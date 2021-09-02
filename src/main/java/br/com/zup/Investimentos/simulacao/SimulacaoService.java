@@ -9,8 +9,19 @@ public class SimulacaoService {
     @Autowired
     private SimulacaoRepository simulacaoRepository;
 
-    public Simulacao fazerSimulacao (Simulacao simulacao) {
-       return simulacaoRepository.save(simulacao);
+    public double fazerSimulacao(Simulacao simulacao) {
+
+        simulacaoRepository.save(simulacao);
+
+        return calcularInvestimento(simulacao);
+
+    }
+
+    public double calcularInvestimento(Simulacao simulacao) {
+
+        return (simulacao.getDinheiroInvestido() * ((0.5 / 100) * simulacao.getMesesDoInvestimento()));
+
+
     }
 
 

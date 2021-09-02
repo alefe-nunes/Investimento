@@ -2,13 +2,13 @@ package br.com.zup.Investimentos.dtos;
 
 import java.time.LocalDate;
 
-public class RespostaDTO {
+public class ValorDeRendimentoDTO {
 
     private double valorAplicado;
     private double rendimento;
     private LocalDate dataDeResgate;
 
-    public RespostaDTO() {
+    public ValorDeRendimentoDTO() {
     }
 
     public double getValorAplicado() {
