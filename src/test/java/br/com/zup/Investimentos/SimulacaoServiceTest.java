@@ -20,7 +20,7 @@ public class SimulacaoServiceTest {
     private SimulacaoRepository simulacaoRepository;
 
     @Test
-    public void testarMetodoFazerSimulacaoCaminhoPositivo () {
+    public void testarMetodoFazerSimulacaoCaminhoPositivo() {
 
         Simulacao simulacao = new Simulacao();
         simulacao.setDinheiroInvestido(1000.00);
@@ -33,7 +33,7 @@ public class SimulacaoServiceTest {
     }
 
     @Test
-    public void testarMetodoCalcularInvestimentoCaminhoPositivo () {
+    public void testarMetodoCalcularInvestimentoCaminhoPositivo() {
 
         Simulacao simulacao = new Simulacao();
         simulacao.setDinheiroInvestido(1000.00);
@@ -44,10 +44,5 @@ public class SimulacaoServiceTest {
 
         Assertions.assertEquals(60.00, simulacaoService.calcularInvestimento(simulacao));
     }
-
-
-
-
-
 
 }
