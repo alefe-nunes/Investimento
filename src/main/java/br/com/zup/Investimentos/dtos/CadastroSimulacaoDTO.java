@@ -1,12 +1,16 @@
 package br.com.zup.Investimentos.dtos;
 
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 
 public class CadastroSimulacaoDTO {
 
     private String nomeDoInteressado;
+    @Email (message = "{validacao.email.interessado}")
     private String emailDoInteressado;
     private String telefoneDoInteressado;
+    @Min(value = 1000 , message = "{validacao.dinheiro.investido}")
     private double dinheiroInvestido;
     private int mesesDoInvestimento;
 
