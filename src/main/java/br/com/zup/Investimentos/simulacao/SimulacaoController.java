@@ -31,7 +31,11 @@ public class SimulacaoController {
 
         ValorDeRendimentoDTO valorDeRendimentoDTO = new ValorDeRendimentoDTO();
 
-        valorDeRendimentoDTO.setRendimento(simulacaoService.fazerSimulacao(modelMapper.map(simulacaoDTO, Simulacao.class)));
+        Simulacao fazerSimulacao = modelMapper.map(simulacaoDTO, Simulacao.class);
+
+        valorDeRendimentoDTO.setRendimento(simulacaoService.fazerSimulacao(fazerSimulacao));
+
+        //  valorDeRendimentoDTO.setRendimento(simulacaoService.fazerSimulacao(modelMapper.map(simulacaoDTO, Simulacao.class)));
 
         valorDeRendimentoDTO.setDataDeResgate(LocalDate.now().plusMonths(simulacaoDTO.getMesesDoInvestimento()));
 
@@ -41,11 +45,6 @@ public class SimulacaoController {
 
 
     }
-
-
-    // Simulacao fazerSimulacao = modelMapper.map(simulacaoDTO, Simulacao.class);
-
-    //  valorDeRendimentoDTO.setRendimento(simulacaoService.fazerSimulacao(fazerSimulacao));
 
 
 }

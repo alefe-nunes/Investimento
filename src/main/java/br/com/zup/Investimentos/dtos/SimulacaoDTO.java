@@ -2,21 +2,15 @@ package br.com.zup.Investimentos.dtos;
 
 import br.com.zup.Investimentos.simulacao.Simulacao;
 
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-
-public class CadastroSimulacaoDTO {
+public class SimulacaoDTO {
 
     private String nomeDoInteressado;
-    @Email (message = "{validacao.email.interessado}")
     private String emailDoInteressado;
     private String telefoneDoInteressado;
-    @Min(value = 1000 , message = "{validacao.dinheiro.investido}")
     private double dinheiroInvestido;
     private int mesesDoInvestimento;
 
-    public CadastroSimulacaoDTO() {
+    public SimulacaoDTO() {
     }
 
     public String getNomeDoInteressado() {
@@ -59,14 +53,16 @@ public class CadastroSimulacaoDTO {
         this.mesesDoInvestimento = mesesDoInvestimento;
     }
 
-    public Simulacao converterDTOemSimulacao () {
-        Simulacao simulacao = new Simulacao();
-        simulacao.setNomeDoInteressado(nomeDoInteressado);
-        simulacao.setEmailDoInteressado(emailDoInteressado);
-        simulacao.setTelefoneDoInteressado(telefoneDoInteressado);
-        simulacao.setDinheiroInvestido(dinheiroInvestido);
-        simulacao.setMesesDoInvestimento(mesesDoInvestimento);
+    public static SimulacaoDTO converterModelParaDTO(Simulacao simulacao) {
 
-        return simulacao;
+        SimulacaoDTO simulacaoDTO = new SimulacaoDTO();
+
+        simulacaoDTO.setNomeDoInteressado(simulacao.getNomeDoInteressado());
+        simulacaoDTO.setEmailDoInteressado(simulacao.getEmailDoInteressado());
+        simulacaoDTO.setTelefoneDoInteressado(simulacao.getTelefoneDoInteressado());
+        simulacaoDTO.setDinheiroInvestido(simulacao.getDinheiroInvestido());
+        simulacaoDTO.setMesesDoInvestimento(simulacao.getMesesDoInvestimento());
+
+        return simulacaoDTO;
     }
 }

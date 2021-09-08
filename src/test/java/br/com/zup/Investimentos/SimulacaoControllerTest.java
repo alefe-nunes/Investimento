@@ -1,29 +1,36 @@
 package br.com.zup.Investimentos;
 
 import br.com.zup.Investimentos.dtos.CadastroSimulacaoDTO;
+import br.com.zup.Investimentos.simulacao.Simulacao;
+import br.com.zup.Investimentos.simulacao.SimulacaoController;
+import br.com.zup.Investimentos.simulacao.SimulacaoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-@WebMvcTest
+@WebMvcTest(SimulacaoController.class)
 public class SimulacaoControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private SimulacaoServiceTest simulacaoServiceTest;
+    private SimulacaoService simulacaoService;
 
     private CadastroSimulacaoDTO cadastroSimulacaoDTO;
-    private ModelMapper modelMapper;
+    private ObjectMapper objectMapper;
 
     @BeforeEach
-    public void setUp () {
+    public void setUp() {
 
         CadastroSimulacaoDTO cadastroSimulacaoDTO = new CadastroSimulacaoDTO();
 
@@ -35,14 +42,23 @@ public class SimulacaoControllerTest {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        @Test
-
-
-
-
-
     }
 
+    @Test
+    public void testarFazerSimulacaoCaminhoPositivo() throws Exception {
+
+        Mockito.when(simulacaoService.fazerSimulacao(Mockito.any(Simulacao.class)))
+                .thenReturn(1000.00);
+
+        String json = objectMapper.writeValueAsString(cadastroSimulacaoDTO);
+
+        ResultActions resultActions = mockMvc
+                .perform(MockMvcRequestBuilders.put("/simulacao")
+                        .contentType(MediaType.APPLICATION_JSON).content(json))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.email", )
+                        .equalTo(cadastroSimulacaoDTO.getEmailDoInteressado()));
+
+    }
 
 
 }
